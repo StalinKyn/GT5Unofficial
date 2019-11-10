@@ -11,6 +11,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import org.lwjgl.Sys;
 
 public class GT_Container_DigitalTransformer extends GT_ContainerMetaTile_Machine {
     public int oTier, oAMP, iAmp = -1;
@@ -32,6 +33,7 @@ public class GT_Container_DigitalTransformer extends GT_ContainerMetaTile_Machin
 
     @Override
     public ItemStack slotClick(int aSlotIndex, int aMouseclick, int aShifthold, EntityPlayer aPlayer) {
+        System.out.println("slot is "+aSlotIndex);
         if (aSlotIndex < 0) {
             return super.slotClick(aSlotIndex, aMouseclick, aShifthold, aPlayer);
         }

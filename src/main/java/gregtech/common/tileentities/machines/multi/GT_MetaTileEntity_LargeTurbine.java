@@ -1,14 +1,20 @@
 package gregtech.common.tileentities.machines.multi;
 
+import gregtech.GT_Mod;
+import gregtech.api.GregTech_API;
 import gregtech.api.gui.GT_GUIContainer_MultiMachine;
+import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.items.GT_MetaGenerated_Tool;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch_Dynamo;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_MultiBlockBase;
+import gregtech.api.util.GT_Log;
+import gregtech.api.util.GT_Multiblock_Utility;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.items.GT_MetaGenerated_Tool_01;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -23,6 +29,7 @@ public abstract class GT_MetaTileEntity_LargeTurbine extends GT_MetaTileEntity_M
     protected double realOptFlow = 0;
     protected int storedFluid = 0;
     protected int counter = 0;
+
 
     public GT_MetaTileEntity_LargeTurbine(int aID, String aName, String aNameRegional) {
         super(aID, aName, aNameRegional);
@@ -39,6 +46,9 @@ public abstract class GT_MetaTileEntity_LargeTurbine extends GT_MetaTileEntity_M
     public Object getClientGUI(int aID, InventoryPlayer aPlayerInventory, IGregTechTileEntity aBaseMetaTileEntity) {
         return new GT_GUIContainer_MultiMachine(aPlayerInventory, aBaseMetaTileEntity, getLocalName(), "LargeTurbine.png");
     }
+
+
+
 
     @Override
     public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
@@ -68,10 +78,10 @@ public abstract class GT_MetaTileEntity_LargeTurbine extends GT_MetaTileEntity_M
             int tX = getBaseMetaTileEntity().getXCoord();
             int tY = getBaseMetaTileEntity().getYCoord();
             int tZ = getBaseMetaTileEntity().getZCoord();
-            for (byte i = -1; i < 2; i = (byte) (i + 1)) {
-                for (byte j = -1; j < 2; j = (byte) (j + 1)) {
+            for (byte i = -1; i < 2; i = (byte) (i + 1)) {//h
+                for (byte j = -1; j < 2; j = (byte) (j + 1)) {//x
                     if ((i != 0) || (j != 0)) {
-                        for (byte k = 0; k < 4; k = (byte) (k + 1)) {
+                        for (byte k = 0; k < 4; k = (byte) (k + 1)) {//leng
                             if (((i == 0) || (j == 0)) && ((k == 1) || (k == 2))) {
                                 if (getBaseMetaTileEntity().getBlock(tX + (tSide == 5 ? k : tSide == 4 ? -k : i), tY + j, tZ + (tSide == 2 ? -k : tSide == 3 ? k : i)) == getCasingBlock() && getBaseMetaTileEntity().getMetaID(tX + (tSide == 5 ? k : tSide == 4 ? -k : i), tY + j, tZ + (tSide == 2 ? -k : tSide == 3 ? k : i)) == getCasingMeta()) {
                                 } else if (!addToMachineList(getBaseMetaTileEntity().getIGregTechTileEntity(tX + (tSide == 5 ? k : tSide == 4 ? -k : i), tY + j, tZ + (tSide == 2 ? -k : tSide == 3 ? k : i)))) {
@@ -102,6 +112,7 @@ public abstract class GT_MetaTileEntity_LargeTurbine extends GT_MetaTileEntity_M
         }
         return true;
     }
+
 
     public abstract Block getCasingBlock();
 

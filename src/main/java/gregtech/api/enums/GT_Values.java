@@ -20,9 +20,9 @@ import java.util.Locale;
 public class GT_Values {
     // unused: A, C, D, G, H, I, J, K, N, O, Q, R, S, T
 
-    // TODO: Rename Material Units to 'U'
-    // TODO: Rename OrePrefixes Class to 'P'
-    // TODO: Rename Materials Class to 'M'
+    //  Rename Material Units to 'U'
+    // Rename OrePrefixes Class to 'P'
+    //  Rename Materials Class to 'M'
 
     /**
      * Empty String for an easier Call Hierarchy
@@ -63,12 +63,12 @@ public class GT_Values {
     /**
      * The Voltage Tiers. Use this Array instead of the old named Voltage Variables
      */
-    public static final long[] V = new long[]{8, 32, 128, 512, 2048, 8192, 32768, 131072, 524288, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE};
+    public static final long[] V = new long[]{8, 32, 128, 512, 2048, 8192, 32768, 131072, 524288, 2097152, 8388608, 33554432, 134217728, 536870912, Integer.MAX_VALUE};
 
     /**
      * The short Names for the Voltages
      */
-    public static final String[] VN = new String[]{"ULV", "LV", "MV", "HV", "EV", "IV", "LuV", "ZPM", "UV", "MAX", "MAX", "MAX", "MAX", "MAX", "MAX", "MAX"};
+    public static final String[] VN = new String[]{"ULV", "LV", "MV", "HV", "EV", "IV", "LuV", "ZPM", "UV", "UHV", "UEV", "UIV", "MAX", "MAX", "MAX", "MAX"};
 
     /**
      * The long Names for the Voltages
@@ -112,4 +112,6 @@ public class GT_Values {
      * If you have to give something a World Parameter but there is no World... (Dummy World)
      */
     public static World DW;
+
+    public static long currentlyFreeDataID = 0;
 }

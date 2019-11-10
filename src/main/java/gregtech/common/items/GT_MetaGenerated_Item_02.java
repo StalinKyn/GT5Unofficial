@@ -2,11 +2,12 @@ package gregtech.common.items;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.*;
+import gregtech.api.interfaces.ITexture;
 import gregtech.api.items.GT_MetaGenerated_Item_X32;
-import gregtech.api.objects.GT_CopiedBlockTexture;
-import gregtech.api.objects.ItemData;
-import gregtech.api.objects.MaterialStack;
+import gregtech.api.objects.*;
 import gregtech.api.util.*;
+import gregtech.common.covers.GT_Cover_Shutter;
+import gregtech.common.covers.GT_Cover_WirelessAcceptor;
 import gregtech.common.items.behaviors.Behaviour_Arrow;
 import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.enchantment.Enchantment;
@@ -310,6 +311,10 @@ public class GT_MetaGenerated_Item_02 extends GT_MetaGenerated_Item_X32 {
         ItemList.Food_Sliced_Cucumber.set(addItem(tLastID = 574, "Cucumber Slice", "QUEWWW-CUMMM-BERRR!!!", new Object[]{new GT_FoodStat(1, 0.05F, EnumAction.eat, null, false, true, false, new int[0]), new TC_Aspects.TC_AspectStack(TC_Aspects.HERBA, 1L)}));
 
         ItemList.Food_Sliced_Cheese.set(addItem(tLastID = 576, "Cheese Slice", "ALIEN ATTACK!!!, throw the CHEEEEESE!!!", new Object[]{new GT_FoodStat(1, 0.1F, EnumAction.eat, null, false, true, false, new int[0]), new TC_Aspects.TC_AspectStack(TC_Aspects.FAMES, 1L)}));
+
+
+        ItemList.Cover_WirelessAcceptor.set(addItem(577,"Cover Acceptor","ToolTip",new Object[0]));
+        GregTech_API.registerCover(ItemList.Cover_WirelessAcceptor.get(1L, new Object[0]), new GT_MultiTexture(new ITexture[]{Textures.BlockIcons.MACHINE_CASINGS[1][0], new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_SHUTTER)}), new GT_Cover_WirelessAcceptor(8192));
 
         GT_ModHandler.addExtractionRecipe(new ItemStack(Blocks.red_flower, 1, 0), new ItemStack(Items.dye, 2, 1));
         GT_ModHandler.addExtractionRecipe(new ItemStack(Blocks.red_flower, 1, 1), new ItemStack(Items.dye, 2, 12));

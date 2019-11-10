@@ -132,6 +132,7 @@ public enum Element {
     Lv(116, 177, 0, -1, null, "Livermorium", false),
     Fa(117, 177, 0, -1, null, "Farnsium", false), // Uus, Ununseptium
     Uuo(118, 176, 0, -1, null, "Ununoctium", false),
+    SP(118, 176, 0, -1, null, "Spartakium", false),
 
     Ma(0, 0, 100, -1, null, "Magic", false),
     Nt(0, 100000, 0, -1, null, "Neutronium", false),

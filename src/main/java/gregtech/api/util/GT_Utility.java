@@ -1638,6 +1638,11 @@ public class GT_Utility {
     
     public static int getCoordinateScan(ArrayList<String> aList, EntityPlayer aPlayer, World aWorld, int aScanLevel, int aX, int aY, int aZ, int aSide, float aClickX, float aClickY, float aClickZ) {
         if (aList == null) return 0;
+        int meta;
+        if(aWorld.getBlock(aX,aY,aZ)==GregTech_API.sDirectedCasings&&(meta = aWorld.getBlockMetadata(aX,aY,aZ)&7)==1){
+            aWorld.setBlockMetadataWithNotify(aX,aY,aZ,meta|8,2);
+        }
+        aList.add("Meta "+aWorld.getBlockMetadata(aX,aY,aZ));
 
         ArrayList<String> tList = new ArrayList<String>();
         int rEUAmount = 0;

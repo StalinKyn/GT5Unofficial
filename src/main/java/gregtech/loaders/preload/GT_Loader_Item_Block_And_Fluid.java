@@ -74,6 +74,9 @@ public class GT_Loader_Item_Block_And_Fluid
         new GT_MetaGenerated_Item_02();
         new GT_MetaGenerated_Item_03();
         new GT_MetaGenerated_Tool_01();
+        new GT_MetaGenerated_Item_04();
+        new GT_MetaGenerated_Item_05();
+        new GT_MetaGenerated_Item_06();
         new GT_FluidDisplayItem();
 
         ItemList.Rotor_LV.set(GT_OreDictUnificator.get(OrePrefixes.rotor, Materials.Tin, 1L));
@@ -83,6 +86,7 @@ public class GT_Loader_Item_Block_And_Fluid
         ItemList.Rotor_IV.set(GT_OreDictUnificator.get(OrePrefixes.rotor, Materials.TungstenSteel, 1L));
 
         ItemList.VOLUMETRIC_FLASK.set(new GT_VolumetricFlask("Volumetric_Flask", "Volumetric flask", 1000));
+        ItemList.ClosedSpatialCell.set(new GT_ClosedSpatialCell_Item("closedspatialcell","Closed Spatial Cell"));
 
         Item tItem = (Item) GT_Utility.callConstructor("gregtech.common.items.GT_SensorCard_Item", 0, null, false, new Object[]{"sensorcard", "GregTech Sensor Card"});
         ItemList.NC_SensorCard.set(tItem == null ? new GT_Generic_Item("sensorcard", "GregTech Sensor Card", "Nuclear Control not installed", false) : tItem);
@@ -157,6 +161,8 @@ public class GT_Loader_Item_Block_And_Fluid
         GregTech_API.sBlockCasings5 = new GT_Block_Casings5();
         GregTech_API.sBlockCasings6 = new GT_Block_Casings6();
         GregTech_API.sBlockCasings8 = new GT_Block_Casings8();
+        GregTech_API.sDirectedCasings = new GT_Block_Casings_Direction();
+
         GregTech_API.sBlockGranites = new GT_Block_Granites();
         GregTech_API.sBlockConcretes = new GT_Block_Concretes();
         GregTech_API.sBlockStones = new GT_Block_Stones();
@@ -393,18 +399,21 @@ public class GT_Loader_Item_Block_And_Fluid
         }
 
         GT_Mod.gregtechproxy.addFluid("Air", "Air", Materials.Air, 2, 295, ItemList.Cell_Air.get(1L, new Object[0]), ItemList.Cell_Empty.get(1L, new Object[0]), 2000);
-        GT_Mod.gregtechproxy.addFluid("Oxygen", "Oxygen", Materials.Oxygen, 2, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Oxygen, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
+      // GT_Mod.gregtechproxy.addFluid("Oxygen", "Oxygen", Materials.Oxygen, 2, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Oxygen, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
         GT_Mod.gregtechproxy.addFluid("Hydrogen", "Hydrogen", Materials.Hydrogen, 2, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Hydrogen, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
         GT_Mod.gregtechproxy.addFluid("Deuterium", "Deuterium", Materials.Deuterium, 2, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Deuterium, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
         GT_Mod.gregtechproxy.addFluid("Tritium", "Tritium", Materials.Tritium, 2, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Tritium, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
         GT_Mod.gregtechproxy.addFluid("Helium", "Helium", Materials.Helium, 2, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Helium, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
-        GT_Mod.gregtechproxy.addFluid("Argon", "Argon", Materials.Argon, 2, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Argon, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
+        //GT_Mod.gregtechproxy.addFluid("Argon", "Argon", Materials.Argon, 2, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Argon, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
         GT_Mod.gregtechproxy.addFluid("Radon", "Radon", Materials.Radon, 2, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Radon, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
+        //GT_Mod.gregtechproxy.addFluid("Neon", "Neon", Materials.Neon, 2, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Neon, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
+       // GT_Mod.gregtechproxy.addFluid("Xenon", "Xenon", Materials.Xenon, 2, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Xenon, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
+       // GT_Mod.gregtechproxy.addFluid("Krypton", "Krypton", Materials.Krypton, 2, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Krypton, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
         GT_Mod.gregtechproxy.addFluid("Fluorine", "Fluorine", Materials.Fluorine, 2, 53, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Fluorine, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
         GT_Mod.gregtechproxy.addFluid("Titaniumtetrachloride", "Titaniumtetrachloride", Materials.Titaniumtetrachloride, 1, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Titaniumtetrachloride, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
         GT_Mod.gregtechproxy.addFluid("Helium-3", "Helium-3", Materials.Helium_3, 2, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Helium_3, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
-        GT_Mod.gregtechproxy.addFluid("Methane", "Methane", Materials.Methane, 2, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Methane, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
-        GT_Mod.gregtechproxy.addFluid("Nitrogen", "Nitrogen", Materials.Nitrogen, 2, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Nitrogen, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
+       // GT_Mod.gregtechproxy.addFluid("Methane", "Methane", Materials.Methane, 2, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Methane, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
+       // GT_Mod.gregtechproxy.addFluid("Nitrogen", "Nitrogen", Materials.Nitrogen, 2, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.Nitrogen, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
         GT_Mod.gregtechproxy.addFluid("NitrogenDioxide", "Nitrogen Dioxide", Materials.NitrogenDioxide, 2, 295, GT_OreDictUnificator.get(OrePrefixes.cell, Materials.NitrogenDioxide, 1L), ItemList.Cell_Empty.get(1L, new Object[0]), 1000);
         GT_Mod.gregtechproxy.addFluid("Steam", "Steam", Materials.Water, 2, 375, GT_ModHandler.getIC2Item("steamCell", 1), Materials.Empty.getCells(1), 1000);
         GT_Values.RA.addFluidCannerRecipe(Materials.Empty.getCells(1), GT_ModHandler.getIC2Item("steamCell", 1), GT_ModHandler.getSteam(1000), null);
@@ -497,10 +506,16 @@ public class GT_Loader_Item_Block_And_Fluid
             if (tMaterial.mElement != null) {
                 GT_Mod.gregtechproxy.addAutogeneratedPlasmaFluid(tMaterial);
             }
-            if (tMaterial.hasCorrespondingFluid()) {
+            if(tMaterial == Materials.Oxygen)
+                tMaterial = tMaterial;
+            if (tMaterial.hasCorrespondingFluid()&&!tMaterial.hasCorrespondingGas()) {
                 GT_Mod.gregtechproxy.addAutoGeneratedCorrespondingFluid(tMaterial);
             }
-            if (tMaterial.hasCorrespondingGas()) {
+            if (tMaterial.hasCorrespondingGas()&&!tMaterial.hasCorrespondingFluid()) {
+                GT_Mod.gregtechproxy.addAutoGeneratedCorrespondingGas(tMaterial);
+            }
+            if(tMaterial.hasCorrespondingFluid()&&tMaterial.hasCorrespondingGas()) {
+                GT_Mod.gregtechproxy.addAutogeneratedLiquefiedGasFluid(tMaterial);
                 GT_Mod.gregtechproxy.addAutoGeneratedCorrespondingGas(tMaterial);
             }
             if (tMaterial.canBeCracked()) {

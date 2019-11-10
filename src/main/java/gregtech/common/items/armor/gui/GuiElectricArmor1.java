@@ -102,7 +102,8 @@ public class GuiElectricArmor1 extends GuiContainer {
 		
 		if(tab==0){
 			//processing power bar
-			bar = Math.min((int) Math.floor(52 * ((float)cont.mInvArmor.data.mStat.get(StatType.PROCESSINGPOWERUSED)/(float)cont.mInvArmor.data.mStat.get(StatType.PROCESSINGPOWER))),52);
+			bar = Math.min((int) Math.floor(52 * ((float)cont.mInvArmor.data.mStat.get(StatType.PROCESSINGPOWERUSED)
+					/(float)cont.mInvArmor.data.mStat.get(StatType.PROCESSINGPOWER))),52);
 			drawTexturedModalRect(xStart + 17, yStart + 17, 177, 146, bar, 5);
 			drawTexturedModalRect(xStart + bar + 17, yStart + 17, 177+bar, 139, 52-bar, 5);
 		}else if(tab==1){
@@ -148,7 +149,8 @@ public class GuiElectricArmor1 extends GuiContainer {
 				if(xStart>72&&xStart<81&&cont.mInvArmor.data.helmet!=null){cont.mInvArmor.data.helmet.openGui=true;}
 				if(xStart>82&&xStart<91&&cont.mInvArmor.data.chestplate!=null){cont.mInvArmor.data.chestplate.openGui=true;}
 				if(xStart>92&&xStart<101&&cont.mInvArmor.data.leggings!=null){cont.mInvArmor.data.leggings.openGui=true;}
-				if(xStart>102&&xStart<112&&cont.mInvArmor.data.boots!=null){cont.mInvArmor.data.boots.openGui=true;}
+				if(xStart>102&&xStart<112&&cont.mInvArmor.data.boots!=null){
+					cont.mInvArmor.data.boots.openGui=true;}
 				
 //				if(xStart>72&&xStart<81&&cont.mInvArmor.data.helmet!=null){cont.mInvArmor.data.helmet.openGui=true;player.closeScreen();}
 //				if(xStart>82&&xStart<91&&cont.mInvArmor.data.chestplate!=null){cont.mInvArmor.data.chestplate.openGui=true;player.closeScreen();}

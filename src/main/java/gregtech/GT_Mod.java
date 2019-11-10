@@ -33,6 +33,7 @@ import gregtech.loaders.misc.GT_Achievements;
 import gregtech.loaders.misc.GT_Bees;
 import gregtech.loaders.misc.GT_CoverLoader;
 import gregtech.loaders.postload.*;
+import gregtech.loaders.postload.ElementalMatter.GT_AtomStatsLoader;
 import gregtech.loaders.preload.*;
 import ic2.api.recipe.IRecipeInput;
 import ic2.api.recipe.RecipeOutput;
@@ -269,6 +270,7 @@ public class GT_Mod implements IGT_Mod {
         gregtechproxy.mUndergroundOil.getConfig(tMainConfig, "undergroundfluid");
         gregtechproxy.mEnableCleanroom = tMainConfig.get("general", "EnableCleanroom", true).getBoolean(true);
         gregtechproxy.mLowGravProcessing = Loader.isModLoaded(GT_Values.MOD_ID_GC_CORE) && tMainConfig.get("general", "LowGravProcessing", true).getBoolean(true);
+        gregtechproxy.mLowGravDims = tMainConfig.get("general", "LowGrawDims", "I28D").getString();
         Calendar now = Calendar.getInstance();
         gregtechproxy.mAprilFool = GregTech_API.sSpecialFile.get(ConfigCategories.general, "AprilFool", now.get(Calendar.MONTH) == Calendar.APRIL && now.get(Calendar.DAY_OF_MONTH) == 1);
         gregtechproxy.mCropNeedBlock = tMainConfig.get("general", "CropNeedBlockBelow", true).getBoolean(true);
@@ -295,7 +297,7 @@ public class GT_Mod implements IGT_Mod {
         gregtechproxy.gt6Cable = tMainConfig.get("general", "GT6StyledWiresConnection", true).getBoolean(true);
         gregtechproxy.ic2EnergySourceCompat = tMainConfig.get("general", "Ic2EnergySourceCompat", true).getBoolean(true);
         gregtechproxy.costlyCableConnection = tMainConfig.get("general", "CableConnectionRequiresSolderingMaterial", false).getBoolean(false);
-        gregtechproxy.mHardRadonRecipe = tMainConfig.get("general","HardRadonRecipe",false).getBoolean(false);
+        gregtechproxy.mHardRadonRecipe = tMainConfig.get("general","HardRadonRecipe",true).getBoolean(true);
         GT_LanguageManager.i18nPlaceholder = tMainConfig.get("general", "UsePlaceholderForMaterialNamesInLangFile", true).getBoolean(true);
 
         Materials[] tDisableOres = new Materials[]{Materials.Chrome, Materials.Naquadria, Materials.Silicon, Materials.Cobalt, Materials.Cadmium, Materials.Indium, Materials.Tungsten,
@@ -564,9 +566,9 @@ public class GT_Mod implements IGT_Mod {
             for (Runnable tRunnable : GregTech_API.sAfterGTPreload) {
                 tRunnable.run();
             }
-        } catch (Throwable e) {
-            e.printStackTrace(GT_Log.err);
-        }
+         } catch (Throwable e) {
+        e.printStackTrace(GT_Log.err);
+    }
         if (FMLCommonHandler.instance().getEffectiveSide().isServer())
             GT_Assemblyline_Server.fillMap(aEvent);
     }
@@ -899,6 +901,7 @@ public class GT_Mod implements IGT_Mod {
         addSolidFakeLargeBoilerFuels();
         
         achievements = new GT_Achievements();
+        new GT_AtomStatsLoader().run();
         GT_Log.out.println("GT_Mod: Loading finished, deallocating temporary Init Variables.");
         GregTech_API.sBeforeGTPreload = null;
         GregTech_API.sAfterGTPreload = null;

@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -48,7 +49,14 @@ public abstract class GT_MetaGenerated_Item_X32 extends GT_MetaGenerated_Item {
         for (int i = 0; i < 32000; i++) {
             OrePrefixes tPrefix = mGeneratedPrefixList[i / 1000];
             if (tPrefix == null) continue;
-            Materials tMaterial = GregTech_API.sGeneratedMaterials[i % 1000];
+            Materials tMaterial = GregTech_API.sGeneratedMaterials[i % 1000+getMaterilaOffset()];
+          /*  ArrayList<Integer> freenums = new ArrayList<>();
+            for(int a= 0; a < 2000;a++){
+                if(GregTech_API.sGeneratedMaterials[a]==null)
+                    freenums.add(a);
+            }*/
+            if(tMaterial==Materials.Spartackium)
+                tMaterial = tMaterial;
             if (tMaterial == null) continue;
             if (doesMaterialAllowGeneration(tPrefix, tMaterial)) {
                 ItemStack tStack = new ItemStack(this, 1, i);
@@ -73,7 +81,7 @@ public abstract class GT_MetaGenerated_Item_X32 extends GT_MetaGenerated_Item {
      */
     @Override
     public short[] getRGBa(ItemStack aStack) {
-        Materials tMaterial = GregTech_API.sGeneratedMaterials[getDamage(aStack) % 1000];
+        Materials tMaterial = GregTech_API.sGeneratedMaterials[(getDamage(aStack) % 1000)+getMaterilaOffset()];
         return tMaterial == null ? Materials._NULL.mRGBa : tMaterial.mRGBa;
     }
 
@@ -83,6 +91,8 @@ public abstract class GT_MetaGenerated_Item_X32 extends GT_MetaGenerated_Item {
      * @return if this Item should be generated and visible.
      */
     public boolean doesMaterialAllowGeneration(OrePrefixes aPrefix, Materials aMaterial) {
+        if(aMaterial == Materials.Spartackium)
+            aMaterial = aMaterial;
         // You have to check for at least these Conditions in every Case! So add a super Call like the following for this before executing your Code:
         // if (!super.doesMaterialAllowGeneration(aPrefix, aMaterial)) return false;
         return aPrefix != null && aMaterial != null && aPrefix.doGenerateItem(aMaterial);
@@ -136,7 +146,7 @@ public abstract class GT_MetaGenerated_Item_X32 extends GT_MetaGenerated_Item {
     	String aName = super.getItemStackDisplayName(aStack);
     	int aDamage = getDamage(aStack);
     	if (aDamage < 32000 && aDamage >= 0)
-    		return Materials.getLocalizedNameForItem(aName, aDamage % 1000);
+    		return Materials.getLocalizedNameForItem(aName, (aDamage % 1000)+getMaterilaOffset());
     	return aName;
     }
 
@@ -144,7 +154,7 @@ public abstract class GT_MetaGenerated_Item_X32 extends GT_MetaGenerated_Item {
     public ItemStack getContainerItem(ItemStack aStack) {
         int aDamage = aStack.getItemDamage();
         if (aDamage < 32000 && aDamage >= 0) {
-            Materials aMaterial = GregTech_API.sGeneratedMaterials[aDamage % 1000];
+            Materials aMaterial = GregTech_API.sGeneratedMaterials[(aDamage % 1000)+getMaterilaOffset()];
             if (aMaterial != null && aMaterial != Materials.Empty && aMaterial != Materials._NULL) {
                 OrePrefixes aPrefix = mGeneratedPrefixList[aDamage / 1000];
                 if (aPrefix != null) return GT_Utility.copyAmount(1, aPrefix.mContainerItem);
@@ -155,7 +165,7 @@ public abstract class GT_MetaGenerated_Item_X32 extends GT_MetaGenerated_Item {
 
     @Override
     public final IIconContainer getIconContainer(int aMetaData) {
-        return GregTech_API.sGeneratedMaterials[aMetaData % 1000] == null ? null : getIconContainer(aMetaData, GregTech_API.sGeneratedMaterials[aMetaData % 1000]);
+        return GregTech_API.sGeneratedMaterials[(aMetaData % 1000)+getMaterilaOffset()] == null ? null : getIconContainer(aMetaData, GregTech_API.sGeneratedMaterials[(aMetaData % 1000)+getMaterilaOffset()]);
     }
 
     @Override
@@ -163,7 +173,7 @@ public abstract class GT_MetaGenerated_Item_X32 extends GT_MetaGenerated_Item {
     public final void getSubItems(Item var1, CreativeTabs aCreativeTab, List aList) {
         for (int i = 0; i < 32000; i++) {
             OrePrefixes aPrefix = mGeneratedPrefixList[i / 1000];
-            Materials aMaterial = GregTech_API.sGeneratedMaterials[i % 1000];
+            Materials aMaterial = GregTech_API.sGeneratedMaterials[(i % 1000)+getMaterilaOffset()];
             if (aPrefix != null && aMaterial != null) {
                 if (doesMaterialAllowGeneration(aPrefix, aMaterial) && doesShowInCreative(aPrefix, aMaterial, GregTech_API.sDoShowAllItemsInCreative)) {
                     ItemStack tStack = new ItemStack(this, 1, i);
@@ -179,7 +189,7 @@ public abstract class GT_MetaGenerated_Item_X32 extends GT_MetaGenerated_Item {
     public final IIcon getIconFromDamage(int aMetaData) {
         if (aMetaData < 0) return null;
         if (aMetaData < 32000) {
-            Materials tMaterial = GregTech_API.sGeneratedMaterials[aMetaData % 1000];
+            Materials tMaterial = GregTech_API.sGeneratedMaterials[(aMetaData % 1000)+getMaterilaOffset()];
             if (tMaterial == null) return null;
             IIconContainer tIcon = getIconContainer(aMetaData, tMaterial);
             if (tIcon != null) return tIcon.getIcon();
@@ -194,5 +204,9 @@ public abstract class GT_MetaGenerated_Item_X32 extends GT_MetaGenerated_Item {
         if (tDamage < 32000 && mGeneratedPrefixList[tDamage / 1000] != null)
             return Math.min(super.getItemStackLimit(aStack), mGeneratedPrefixList[tDamage / 1000].mDefaultStackSize);
         return super.getItemStackLimit(aStack);
+    }
+
+    protected int getMaterilaOffset(){
+        return 0;
     }
 }

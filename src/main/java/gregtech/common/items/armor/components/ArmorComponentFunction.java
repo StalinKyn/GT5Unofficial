@@ -15,6 +15,7 @@ public class ArmorComponentFunction extends ArmorComponent{
 	@Override
 	public void calculateArmor(ArmorData aArmorData) {
 		addVal(StatType.PROCESSINGPOWERUSED, aArmorData);
+		//addVal(StatType.PROCESSINGPOWER,aArmorData);
 		if(!aArmorData.mBStat.containsKey(mType))aArmorData.mBStat.put(mType, true);
 	}
 

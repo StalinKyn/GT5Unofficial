@@ -88,6 +88,42 @@ public class GT_Container_BasicMachine extends GT_Container_BasicTank {
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 43));
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 43));
                 break;
+            case 9:
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 7));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 7));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 53, 7));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 25));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 25));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 53, 25));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 43));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 43));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 53, 43));
+                break;
+            case 12:
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 7));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 7));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 53, 7));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 25));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 25));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 53, 25));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 43));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 43));
+                break;
+            case 13:
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 14, 14));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 32, 14));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 14, 32));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 32, 32));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 63, 6));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 81, 6));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 99, 6));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 63, 24));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 81, 24));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 99, 24));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 63, 42));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 81, 42));
+                addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 99, 42));
+                break;
             default:
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 17, 7));
                 addSlotToContainer(new Slot(mTileEntity, tStartIndex++, 35, 7));
@@ -170,7 +206,6 @@ public class GT_Container_BasicMachine extends GT_Container_BasicTank {
                 addSlotToContainer(new GT_Slot_Output(mTileEntity, tStartIndex++, 143, 43));
                 break;
         }
-
         addSlotToContainer(new Slot(mTileEntity, 1, 80, 63));
         addSlotToContainer(new Slot(mTileEntity, 3, 125, 63));
         addSlotToContainer(new GT_Slot_Render(mTileEntity, tStartIndex++, 53, 63));

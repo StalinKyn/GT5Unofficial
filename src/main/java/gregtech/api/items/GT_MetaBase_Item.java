@@ -66,6 +66,12 @@ public abstract class GT_MetaBase_Item extends GT_Generic_Item implements ISpeci
         return this;
     }
 
+    public ArrayList<IItemBehaviour<GT_MetaBase_Item>> getItemBehaviours(int aMetaValue){
+        if (aMetaValue < 0 || aMetaValue >= 32766) return null;
+        return mItemBehaviors.get((short)aMetaValue);
+    }
+
+
     public abstract Long[] getElectricStats(ItemStack aStack);
 
     public abstract Long[] getFluidContainerStats(ItemStack aStack);

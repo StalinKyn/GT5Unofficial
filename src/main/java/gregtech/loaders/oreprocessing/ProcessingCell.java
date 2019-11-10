@@ -24,6 +24,9 @@ public class ProcessingCell
     public void registerOre(OrePrefixes aPrefix, Materials aMaterial, String aOreDictName, String aModName, ItemStack aStack) {
         switch (aPrefix) {
             case cell:
+                if (aMaterial.hasCorrespondingFluid()&&aMaterial.hasCorrespondingGas()&&aMaterial.getCompressionRatio()>0) {
+                    GT_Values.RA.addLiquefierRecipe(aMaterial.getGas(1000L), aMaterial.getFluid(Math.round(1000/aMaterial.getCompressionRatio())), 400,aMaterial.getLiquidTemperature());
+                }
                 if (aMaterial == Materials.Empty) {
                     GT_ModHandler.removeRecipeByOutput(aStack);
                     if (aModName.equalsIgnoreCase("AtomicScience")) {
@@ -86,6 +89,7 @@ public class ProcessingCell
                             }
                         }
                     }
+
                 }
                 break;
             case cellPlasma:

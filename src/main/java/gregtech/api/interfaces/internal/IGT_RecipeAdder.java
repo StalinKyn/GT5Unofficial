@@ -477,6 +477,15 @@ public interface IGT_RecipeAdder {
     public boolean addVacuumFreezerRecipe(ItemStack aInput1, ItemStack aOutput1, int aDuration);
 
     /**
+     * Adds a Vacuum Freezer Recipe
+     *
+     * @param aInput1   must be != null
+     * @param aOutput1  must be != null
+     * @param aDuration must be > 0
+     */
+    public boolean addLiquefierRecipe(FluidStack aInput1, FluidStack aOutput1, int aDuration, int aTemperature);
+
+    /**
      * Adds a Fuel for My Generators
      *
      * @param aInput1  must be != null
@@ -683,5 +692,11 @@ public interface IGT_RecipeAdder {
      * Currently only affects Chemical Reactor Recipes.
 	 */
 	public void setIsAddingDeprecatedRecipes(boolean isAddingDeprecatedRecipes);
+
+	public boolean addElectricResearchStationRecipe(ItemStack[] aResearchItems, int aSingleResearchTime, ItemStack[] aInputsPerIteration, FluidStack[] aFluidInputsPerIteration, int aComputation, int aEUt, GT_Recipe aTargetRecipe, int aMinIterationsCount, int aMaxIterationsCount);
+
+    public boolean addPrimitiveResearchStationRecipe(ItemStack[] aResearchItems, int aSingleResearchTime, ItemStack[] aInputsPerIteration, FluidStack aFluidInputPerIteration, GT_Recipe aTargetRecipe, int aMinIterationsCount, int aMaxIterationsCount);
+
+    public boolean addEngineersWorkstationRecipe(ItemStack[] aInputs, FluidStack aFluidInput, ItemStack aSpecial, ItemStack aOutput1, int aDuration);
 
 }

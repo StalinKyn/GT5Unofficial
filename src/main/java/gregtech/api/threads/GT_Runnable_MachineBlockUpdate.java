@@ -5,12 +5,15 @@ import gregtech.api.interfaces.tileentity.IMachineBlockUpdateable;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
+import org.lwjgl.Sys;
 
 import java.util.ArrayList;
 
 public class GT_Runnable_MachineBlockUpdate implements Runnable {
     private final int mX, mY, mZ;
     private final World mWorld;
+
+    public static boolean isProcessingAllowed = true;
 
     public GT_Runnable_MachineBlockUpdate(World aWorld, int aX, int aY, int aZ) {
         mWorld = aWorld;
@@ -20,6 +23,8 @@ public class GT_Runnable_MachineBlockUpdate implements Runnable {
     }
 
     private static void stepToUpdateMachine(World aWorld, int aX, int aY, int aZ, ArrayList<ChunkPosition> aList) {
+        if(!isProcessingAllowed)
+            return;
         aList.add(new ChunkPosition(aX, aY, aZ));
         TileEntity tTileEntity = aWorld.getTileEntity(aX, aY, aZ);
         if (tTileEntity instanceof IMachineBlockUpdateable)
@@ -31,6 +36,17 @@ public class GT_Runnable_MachineBlockUpdate implements Runnable {
             if (!aList.contains(new ChunkPosition(aX, aY - 1, aZ))) stepToUpdateMachine(aWorld, aX, aY - 1, aZ, aList);
             if (!aList.contains(new ChunkPosition(aX, aY, aZ + 1))) stepToUpdateMachine(aWorld, aX, aY, aZ + 1, aList);
             if (!aList.contains(new ChunkPosition(aX, aY, aZ - 1))) stepToUpdateMachine(aWorld, aX, aY, aZ - 1, aList);
+
+            if (!aList.contains(new ChunkPosition(aX + 1, aY+1, aZ))) stepToUpdateMachine(aWorld, aX + 1, aY+1, aZ, aList);
+            if (!aList.contains(new ChunkPosition(aX - 1, aY+1, aZ))) stepToUpdateMachine(aWorld, aX - 1, aY+1, aZ, aList);
+            if (!aList.contains(new ChunkPosition(aX, aY+1, aZ + 1))) stepToUpdateMachine(aWorld, aX, aY+1, aZ + 1, aList);
+            if (!aList.contains(new ChunkPosition(aX, aY+1, aZ - 1))) stepToUpdateMachine(aWorld, aX, aY+1, aZ - 1, aList);
+
+            if (!aList.contains(new ChunkPosition(aX + 1, aY-1, aZ))) stepToUpdateMachine(aWorld, aX + 1, aY-1, aZ, aList);
+            if (!aList.contains(new ChunkPosition(aX - 1, aY-1, aZ))) stepToUpdateMachine(aWorld, aX - 1, aY-1, aZ, aList);
+            if (!aList.contains(new ChunkPosition(aX, aY-1, aZ + 1))) stepToUpdateMachine(aWorld, aX, aY-1, aZ + 1, aList);
+            if (!aList.contains(new ChunkPosition(aX, aY-1, aZ - 1))) stepToUpdateMachine(aWorld, aX, aY-1, aZ - 1, aList);
+
         }
     }
 

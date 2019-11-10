@@ -785,5 +785,9 @@ public class GT_CraftingRecipeLoader implements Runnable {
 
         GT_Values.RA.addFluidSolidifierRecipe(ItemList.Shape_Mold_Ball.get(0), new FluidStack(FluidRegistry.getFluid("molten.borosilicateglass"), 144), ItemList.VOLUMETRIC_FLASK.get(1), 44, 24);
 
+        long bitsd = GT_ModHandler.RecipeBits.DISMANTLEABLE | GT_ModHandler.RecipeBits.NOT_REMOVABLE | GT_ModHandler.RecipeBits.REVERSIBLE | GT_ModHandler.RecipeBits.BUFFERED;
+        GT_ModHandler.addCraftingRecipe(ItemList.Casing_Durable_HSSG.get(1L, new Object[0]), bitsd, new Object[]{"SDS", "DdD", "SDS", 'S', GT_OreDictUnificator.get(OrePrefixes.screw, Materials.HSSG, 1L), 'D', OrePrefixes.plateDouble.get(Materials.HSSG)});
+        GT_ModHandler.addCraftingRecipe(ItemList.Casing_SuperHeatProof.get(1L, new Object[0]), bitsd, new Object[]{"UEd", "SHS", "ULw", 'U', OrePrefixes.wireGt01.get(Materials.Superconductor), 'E', ItemList.Electric_Pump_MV, 'S', GT_OreDictUnificator.get(OrePrefixes.screw, Materials.HSSS, 1L), 'H', ItemList.Casing_HeatProof, 'L', OrePrefixes.pipeMedium.get(Materials.Superconductor)});
+
     }
 }

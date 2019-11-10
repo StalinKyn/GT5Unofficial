@@ -10,6 +10,9 @@ import net.minecraft.item.ItemStack;
 import static gregtech.api.enums.GT_Values.V;
 
 public class GT_MetaTileEntity_Hatch_Energy extends GT_MetaTileEntity_Hatch {
+
+    int mAmpers = 2;
+
     public GT_MetaTileEntity_Hatch_Energy(int aID, String aName, String aNameRegional, int aTier) {
         super(aID, aName, aNameRegional, aTier, 0, new String[]{"Energy Injector for Multiblocks", "Accepts up to 2 Amps"});
     }
@@ -20,6 +23,21 @@ public class GT_MetaTileEntity_Hatch_Energy extends GT_MetaTileEntity_Hatch {
 
     public GT_MetaTileEntity_Hatch_Energy(String aName, int aTier, String[] aDescription, ITexture[][][] aTextures) {
         super(aName, aTier, 0, aDescription, aTextures);
+    }
+
+    public GT_MetaTileEntity_Hatch_Energy(int aID, String aName, String aNameRegional, int aTier, int aAmperage) {
+        super(aID, aName, aNameRegional, aTier, 0, new String[]{"Energy Injector for Multiblocks", "Accepts up to 2 Amps"});
+        mAmpers = aAmperage;
+    }
+
+    public GT_MetaTileEntity_Hatch_Energy(String aName, int aTier, String aDescription, ITexture[][][] aTextures, int aAmperage) {
+        super(aName, aTier, 0, aDescription, aTextures);
+        mAmpers = aAmperage;
+    }
+
+    public GT_MetaTileEntity_Hatch_Energy(String aName, int aTier, String[] aDescription, ITexture[][][] aTextures, int aAmperage) {
+        super(aName, aTier, 0, aDescription, aTextures);
+        mAmpers = aAmperage;
     }
 
     @Override
@@ -70,21 +88,25 @@ public class GT_MetaTileEntity_Hatch_Energy extends GT_MetaTileEntity_Hatch {
     @Override
     public long maxEUInput() {
         return V[mTier];
-    }
+    }//again actually is used like maxVoltageIN
+
+    public long getMaxInput(){//true max input
+        return V[mTier]*mAmpers;
+    }//true max EU flow
 
     @Override
     public long maxEUStore() {
-        return 512 + V[mTier] * 8;
+        return 512 + V[mTier] * 4* mAmpers;
     }
 
     @Override
     public long maxAmperesIn() {
-        return 2;
+        return mAmpers;
     }
 
     @Override
     public MetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-        return new GT_MetaTileEntity_Hatch_Energy(mName, mTier, mDescriptionArray, mTextures);
+        return new GT_MetaTileEntity_Hatch_Energy(mName, mTier, mDescriptionArray, mTextures, mAmpers);
     }
 
     @Override

@@ -10,6 +10,9 @@ import net.minecraft.item.ItemStack;
 import static gregtech.api.enums.GT_Values.V;
 
 public class GT_MetaTileEntity_Hatch_Dynamo extends GT_MetaTileEntity_Hatch {
+
+    public int mAmpers = 1;
+
     public GT_MetaTileEntity_Hatch_Dynamo(int aID, String aName, String aNameRegional, int aTier) {
         super(aID, aName, aNameRegional, aTier, 0, new String[]{"Generating electric Energy from Multiblocks", "Puts out up to 1 Amp"});
     }
@@ -20,6 +23,21 @@ public class GT_MetaTileEntity_Hatch_Dynamo extends GT_MetaTileEntity_Hatch {
 
     public GT_MetaTileEntity_Hatch_Dynamo(String aName, int aTier, String[] aDescription, ITexture[][][] aTextures) {
         super(aName, aTier, 0, aDescription, aTextures);
+    }
+
+    public GT_MetaTileEntity_Hatch_Dynamo(int aID, String aName, String aNameRegional, int aTier, int aAmperage) {
+        super(aID, aName, aNameRegional, aTier, 0, new String[]{"Generating electric Energy from Multiblocks", "Puts out up to "+aAmperage+ ((aAmperage==1)?"1 Amp":aAmperage+" Amps")});
+        mAmpers = aAmperage;
+    }
+
+    public GT_MetaTileEntity_Hatch_Dynamo(String aName, int aTier, String aDescription, ITexture[][][] aTextures, int aAmperage) {
+        super(aName, aTier, 0, aDescription, aTextures);
+        mAmpers = aAmperage;
+    }
+
+    public GT_MetaTileEntity_Hatch_Dynamo(String aName, int aTier, String[] aDescription, ITexture[][][] aTextures, int aAmperage) {
+        super(aName, aTier, 0, aDescription, aTextures);
+        mAmpers = aAmperage;
     }
 
     @Override
@@ -64,22 +82,31 @@ public class GT_MetaTileEntity_Hatch_Dynamo extends GT_MetaTileEntity_Hatch {
 
     @Override
     public long getMinimumStoredEU() {
-        return 512;
+        return 512 * mAmpers;
     }
 
     @Override
-    public long maxEUOutput() {
+    public long maxEUOutput() {//actually used like max out voltage
         return V[mTier];
+    }
+
+    public long getMaxOutput(){//true max output
+        return V[mTier]*mAmpers;
+    }//true max EU flow
+
+    @Override
+    public long maxAmperesOut() {
+        return mAmpers;
     }
 
     @Override
     public long maxEUStore() {
-        return 512 + V[mTier + 1] * 2;
+        return 512 + V[mTier + 1] * 2 * mAmpers;
     }
 
     @Override
     public MetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-        return new GT_MetaTileEntity_Hatch_Dynamo(mName, mTier, mDescriptionArray, mTextures);
+        return new GT_MetaTileEntity_Hatch_Dynamo(mName, mTier, mDescriptionArray, mTextures, mAmpers);
     }
 
     @Override
@@ -90,5 +117,10 @@ public class GT_MetaTileEntity_Hatch_Dynamo extends GT_MetaTileEntity_Hatch {
     @Override
     public boolean allowPutStack(IGregTechTileEntity aBaseMetaTileEntity, int aIndex, byte aSide, ItemStack aStack) {
         return false;
+    }
+
+    @Override
+    public void onScrewdriverRightClick(byte aSide, EntityPlayer aPlayer, float aX, float aY, float aZ) {
+        setEUVar(maxEUOutput()*4);
     }
 }

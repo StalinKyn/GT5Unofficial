@@ -13,6 +13,7 @@ import gregtech.api.util.GT_Utility;
 import ic2.api.crops.CropCard;
 import ic2.api.crops.Crops;
 import ic2.core.item.ItemCropSeed;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
@@ -37,6 +38,8 @@ public class GT_MetaTileEntity_OrganicReplicator extends GT_MetaTileEntity_Basic
     public MetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
         return new GT_MetaTileEntity_OrganicReplicator(this.mName, this.mTier, this.mDescriptionArray, this.mTextures, this.mGUIName, this.mNEIName);
     }
+
+
 
     public int checkRecipe(){
         FluidStack tFluid = getFillableStack();

@@ -550,6 +550,40 @@ public class GT_NEI_DefaultHandler
                     }
                     tStartIndex++;
                     break;
+                case 9:
+                    if (aRecipe.getRepresentativeInput(tStartIndex) != null) {
+                        this.mInputs.add(new FixedPositionedStack(aRecipe.getRepresentativeInput(tStartIndex), 12, -4));
+                    }
+                    tStartIndex++;
+                    if (aRecipe.getRepresentativeInput(tStartIndex) != null) {
+                        this.mInputs.add(new FixedPositionedStack(aRecipe.getRepresentativeInput(tStartIndex), 30, -4));
+                    }
+                    tStartIndex++;
+                    if (aRecipe.getRepresentativeInput(tStartIndex) != null) {
+                        this.mInputs.add(new FixedPositionedStack(aRecipe.getRepresentativeInput(tStartIndex), 48, -4));
+                    }
+                    tStartIndex++;
+                    if (aRecipe.getRepresentativeInput(tStartIndex) != null) {
+                        this.mInputs.add(new FixedPositionedStack(aRecipe.getRepresentativeInput(tStartIndex), 12, 14));
+                    }
+                    tStartIndex++;
+                    if (aRecipe.getRepresentativeInput(tStartIndex) != null) {
+                        this.mInputs.add(new FixedPositionedStack(aRecipe.getRepresentativeInput(tStartIndex), 30, 14));
+                    }
+                    tStartIndex++;
+                    if (aRecipe.getRepresentativeInput(tStartIndex) != null) {
+                        this.mInputs.add(new FixedPositionedStack(aRecipe.getRepresentativeInput(tStartIndex), 48, 14));
+                    }
+                    tStartIndex++;
+                    if (aRecipe.getRepresentativeInput(tStartIndex) != null) {
+                        this.mInputs.add(new FixedPositionedStack(aRecipe.getRepresentativeInput(tStartIndex), 12, 32));
+                    }
+                    tStartIndex++;
+                    if (aRecipe.getRepresentativeInput(tStartIndex) != null) {
+                        this.mInputs.add(new FixedPositionedStack(aRecipe.getRepresentativeInput(tStartIndex), 30, 32));
+                    }
+                    tStartIndex++;
+                    break;
                 default:
                     if (aRecipe.getRepresentativeInput(tStartIndex) != null) {
                         this.mInputs.add(new FixedPositionedStack(aRecipe.getRepresentativeInput(tStartIndex), 12, -4));
@@ -597,9 +631,9 @@ public class GT_NEI_DefaultHandler
                     break;
                 case 1:
                     if (aRecipe.getOutput(tStartIndex) != null) {
-                        this.mOutputs.add(new FixedPositionedStack(aRecipe.getOutput(tStartIndex), 102, 14, aRecipe.getOutputChance(tStartIndex)));
-                    }
-                    tStartIndex++;
+                    this.mOutputs.add(new FixedPositionedStack(aRecipe.getOutput(tStartIndex), 102, 14, aRecipe.getOutputChance(tStartIndex)));
+            }
+            tStartIndex++;
                     break;
                 case 2:
                     if (aRecipe.getOutput(tStartIndex) != null) {

@@ -206,7 +206,7 @@ public class GT_EnergyArmor_Item extends ItemArmor implements ISpecialArmor {
                     GT_ModHandler.chargeElectricItem(tTargetChargeItem, 20, Integer.MAX_VALUE, true, false);
                 }
             } else {
-                    /* TODO:
+                    /* TOO:
 					if ((mSpecials & 16) != 0 && tTargetDechargeItem != null && GT_ModHandler.canUseElectricItem(tTargetDechargeItem, 10)) {
 						if (aPlayer.worldObj.getBlock	((int)aPlayer.posX, (int)aPlayer.posY+1, (int)aPlayer.posZ) == Blocks.air)
 							aPlayer.worldObj.setBlock	((int)aPlayer.posX, (int)aPlayer.posY+1, (int)aPlayer.posZ, GregTech_API.sBlockList[3]);
@@ -276,7 +276,7 @@ public class GT_EnergyArmor_Item extends ItemArmor implements ISpecialArmor {
         return false;
     }
 
-    // TODO: @ForgeSubscribe
+    // ODO: @ForgeSubscribe
     public void onEntityLivingFallEvent(LivingFallEvent var1) {
         if (!var1.entity.worldObj.isRemote && var1.entity instanceof EntityPlayer) {
             EntityPlayer var2 = (EntityPlayer) var1.entity;

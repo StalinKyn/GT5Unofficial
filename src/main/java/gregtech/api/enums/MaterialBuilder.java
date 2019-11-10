@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import gregtech.api.objects.MaterialStack;
+import scala.xml.Elem;
 
 public class MaterialBuilder {
 	public static final int DIESEL = 0, GAS = 1, THERMAL = 2, SEMIFLUID = 3, PLASMA = 4, MAGIC = 5;
@@ -37,6 +38,8 @@ public class MaterialBuilder {
 	private boolean canBeSteamCracked = false;
 	private int liquidTemperature = 300;
 	private int gasTemperature = 300;
+	private int compressionRatio = 1;
+	private Element element;
 
 	public MaterialBuilder(int metaItemSubID, TextureSet iconSet, String defaultLocalName) {
 		this.metaItemSubID = metaItemSubID;
@@ -50,7 +53,7 @@ public class MaterialBuilder {
 				blastFurnaceRequired, transparent, oreValue, densityMultiplier, densityDivider, color, extraData, materialList, aspects)
 				.setHasCorrespondingFluid(hasCorrespondingFluid)
 				.setHasCorrespondingGas(hasCorrespondingGas)
-				.setCanBeCracked(canBeCracked);
+				.setCanBeCracked(canBeCracked).setCompressionRatio(compressionRatio).setElement(element);
 	}
 	
 	public MaterialBuilder setName(String name){
@@ -250,6 +253,16 @@ public class MaterialBuilder {
 
 	public MaterialBuilder setCanBeCracked(boolean canBeCracked) {
 		this.canBeCracked = canBeCracked;
+		return this;
+	}
+
+	public MaterialBuilder setCompressionRatio(int compressionRatio){
+		this.compressionRatio = compressionRatio;
+		return this;
+	}
+
+	public MaterialBuilder setElement(Element element){
+		this.element = element;
 		return this;
 	}
 

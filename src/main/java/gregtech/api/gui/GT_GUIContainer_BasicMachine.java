@@ -1,6 +1,7 @@
 package gregtech.api.gui;
 
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
+import gregtech.common.tileentities.machines.basic.GT_MetaTileEntity_PrimitiveResearchStation;
 import net.minecraft.entity.player.InventoryPlayer;
 
 import java.util.ArrayList;

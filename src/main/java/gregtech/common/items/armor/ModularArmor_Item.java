@@ -8,6 +8,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import gregtech.api.damagesources.GT_DamageSources;
 import gregtech.api.enums.GT_Values;
+import gregtech.api.util.GT_Utility;
 import gregtech.common.items.armor.components.StatType;
 import gregtech.common.items.armor.gui.ContainerBasicArmor;
 import gregtech.common.items.armor.gui.ContainerModularArmor;
@@ -317,7 +318,10 @@ public class ModularArmor_Item extends ItemArmor implements ISpecialArmor, IGogg
 					aPlayer.motionZ *= (4000.0d / data.maxWeight);
 				}
 			}
-			if (data.leggings != null && data.leggings.charge > data.leggings.mStat.get(StatType.MOTOREUUSAGE) && data.mStat.get(StatType.PROCESSINGPOWER) > data.mStat.get(StatType.PROCESSINGPOWERUSED) && motorSpeed > 0
+			if (data.leggings != null &&
+					data.leggings.charge > data.leggings.mStat.get(StatType.MOTOREUUSAGE)
+					&& data.mStat.get(StatType.PROCESSINGPOWER) > data.mStat.get(StatType.PROCESSINGPOWERUSED)
+					&& motorSpeed > 0
 					&& aPlayer.isSprinting() && jumpticks > 0
 					&& (aPlayer.onGround && Math.abs(aPlayer.motionX) + Math.abs(aPlayer.motionZ) > 0.10000000149011612D)) {
 				data.leggings.charge -= data.leggings.mStat.get(StatType.MOTOREUUSAGE);
@@ -334,6 +338,7 @@ public class ModularArmor_Item extends ItemArmor implements ISpecialArmor, IGogg
 				if (var7 > 0.0F) {
 					aPlayer.moveFlying(0.0F, 1.0F, var7);
 				}
+				GT_Utility.sendChatToPlayer(aPlayer,""+var7);
 			}
 
 			// jump+step up assist

@@ -21,6 +21,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidHandler;
@@ -769,12 +770,13 @@ public abstract class GT_MetaTileEntity_BasicMachine extends GT_MetaTileEntity_B
     }
 
     public static boolean isValidForLowGravity(GT_Recipe tRecipe, int dimId){
-        return //TODO check or get a better solution
+        return //TDO check or get a better solution
                 DimensionManager.getProvider(dimId).getClass().getName().contains("Orbit") ||
                 DimensionManager.getProvider(dimId).getClass().getName().endsWith("Space") ||
                 DimensionManager.getProvider(dimId).getClass().getName().endsWith("Asteroids") ||
                 DimensionManager.getProvider(dimId).getClass().getName().endsWith("SS") ||
-                DimensionManager.getProvider(dimId).getClass().getName().contains("SpaceStation");
+                DimensionManager.getProvider(dimId).getClass().getName().contains("SpaceStation")||
+                GT_Mod.gregtechproxy.mLowGravDims.contains("I"+dimId+"D");
     }
 
 
@@ -799,6 +801,9 @@ public abstract class GT_MetaTileEntity_BasicMachine extends GT_MetaTileEntity_B
         }
         if (tRecipe.mSpecialValue == -200 && (mCleanroom == null || mCleanroom.mEfficiency == 0))
             return FOUND_RECIPE_BUT_DID_NOT_MEET_REQUIREMENTS;
+        if(tRecipe.mRequireResearch&&tRecipe.mOutputs!=null)
+            if(getSpecialSlot()==null||getSpecialSlot().getTagCompound()==null||!findResearchDataInTag(getSpecialSlot().getTagCompound(),tRecipe.getOutput(0)))
+                return FOUND_RECIPE_BUT_DID_NOT_MEET_REQUIREMENTS;
         if (!tRecipe.isRecipeInputEqual(true, new FluidStack[]{getFillableStack()}, getAllInputs()))
             return FOUND_RECIPE_BUT_DID_NOT_MEET_REQUIREMENTS;
         for (int i = 0; i < mOutputItems.length; i++)
@@ -811,6 +816,15 @@ public abstract class GT_MetaTileEntity_BasicMachine extends GT_MetaTileEntity_B
         mOutputFluid = tRecipe.getFluidOutput(0);
         calculateOverclockedNess(tRecipe);
         return FOUND_AND_SUCCESSFULLY_USED_RECIPE;
+    }
+
+    private boolean findResearchDataInTag(NBTTagCompound aTag,ItemStack aRecipeOutput){
+        int tUsedCapacity = aTag.getInteger("usedCapacity");
+        for(int i = 0; i<tUsedCapacity;i++){
+            if(GT_Utility.areStacksEqual(ItemStack.loadItemStackFromNBT(aTag.getCompoundTag("researchItemTag"+i)),aRecipeOutput,true))
+                return true;
+        }
+        return false;
     }
 
     public ITexture[] getSideFacingActive(byte aColor) {

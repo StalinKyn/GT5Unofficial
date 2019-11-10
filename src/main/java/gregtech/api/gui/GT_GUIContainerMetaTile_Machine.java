@@ -24,6 +24,7 @@ public class GT_GUIContainerMetaTile_Machine extends GT_GUIContainer {
         this(new GT_ContainerMetaTile_Machine(aInventoryPlayer, aTileEntity), aGUIbackground);
     }
 
+
     @Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
         super.drawGuiContainerBackgroundLayer(par1, par2, par3);

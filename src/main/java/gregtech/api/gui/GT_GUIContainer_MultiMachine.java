@@ -8,6 +8,7 @@ import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.items.GT_MetaGenerated_Tool_01;
 import gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_DrillerBase;
+import gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_HugeTurbine;
 import gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_LargeTurbine;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
